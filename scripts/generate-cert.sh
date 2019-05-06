@@ -1,10 +1,20 @@
 #!/bin/bash
 
-readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../" && pwd)"
 
-sudo openssl \
-    req -x509 \
-    -nodes -days 365 -newkey rsa:2048 \
-    -subj "/C=GB/ST=London/L=London/O=uselocalhost.app/OU=uselocalhost.app/CN=*.uselocalhost.app" \
-    -keyout ${SCRIPT_DIR}/ssl/uselocalhost.app.key \
-    -out ${SCRIPT_DIR}/ssl/uselocalhost.app.crt
+openssl req \
+    -newkey rsa:2048 \
+    -x509 \
+    -nodes \
+    -keyout server.key \
+    -new \
+    -out server.crt \
+    -subj /CN=*.uselocalhost.app \
+    -reqexts SAN \
+    -extensions SAN \
+    -config <(cat /System/Library/OpenSSL/openssl.cnf \
+        <(printf '[SAN]\nsubjectAltName=DNS:*.uselocalhost.app')) \
+    -sha256 \
+    -days 3650 \
+    -keyout ${BASE_DIR}/ssl/uselocalhost.app.key \
+    -out ${BASE_DIR}/ssl/uselocalhost.app.crt
