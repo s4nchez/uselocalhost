@@ -1,6 +1,6 @@
 # uselocalhost
 
-Better DNS names and HTTPS support for localhost.
+Easy domains and HTTPS support for localhost.
 
 This is achieved by the combination of three pieces:
 1. A public domain name (https://uselocalhost.app) which points to localhost.
