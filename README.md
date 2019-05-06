@@ -22,7 +22,7 @@ Step 1 - Generate and trust your self-signed certificate:
 ./scripts/generate-cert.sh && ./scripts/trust-cert-mac.sh
 ``` 
 
-Step 2 - Define your `hosts.yaml` file with all the services you want to surface:
+Step 2 - Customise the `hosts.yaml` file with all the services you want to surface:
 
 ```yaml
 - service: www
