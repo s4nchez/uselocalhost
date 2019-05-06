@@ -2,6 +2,11 @@
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+docker kill uselocalhost.app  > /dev/null 2>&1;
+docker rm uselocalhost.app  > /dev/null 2>&1
+
+erb -r yaml ${SCRIPT_DIR}/conf/nginx.conf.erb > ${SCRIPT_DIR}/conf/nginx.conf
+
 docker run -it \
     -p 80:80 \
     -p 443:443 \

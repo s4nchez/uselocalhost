@@ -1,0 +1,4 @@
+- service: www
+  host: http://www.google.com
+- service: httpbin
+  host: http://httpbin.org
