@@ -7,7 +7,7 @@ docker rm uselocalhost.app  > /dev/null 2>&1
 
 erb -r yaml ${SCRIPT_DIR}/conf/nginx.conf.erb > ${SCRIPT_DIR}/conf/nginx.conf
 
-docker run -it \
+docker run -d \
     -p 80:80 \
     -p 443:443 \
     --name uselocalhost.app \
